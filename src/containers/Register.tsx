@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { RegistrationRequest } from "@oryd/kratos-client"
+import { RegistrationFlow } from "@oryd/kratos-client"
 import { initialiseRequest } from "services/kratos"
 import { KratosMessages } from "components/KratosMessages"
 import { KratosForm } from "components/KratosForm"
@@ -7,10 +7,10 @@ import { IconLogo } from "components/IconLogo"
 import { login } from "services/auth"
 
 export const Register = () => {
-  const [requestResponse, setRequestResponse] = useState<RegistrationRequest>()
+  const [requestResponse, setRequestResponse] = useState<RegistrationFlow>()
 
   useEffect(() => {
-    const request = initialiseRequest({ type: "register" }) as Promise<RegistrationRequest>
+    const request = initialiseRequest({ type: "register" }) as Promise<RegistrationFlow>
     request
       .then(request => setRequestResponse(request))
       .catch(() => {})

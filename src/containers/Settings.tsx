@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react"
-import { SettingsRequest } from "@oryd/kratos-client"
+import { SettingsFlow } from "@oryd/kratos-client"
 import { initialiseRequest } from "services/kratos"
 import { Header } from "components/Header"
 import { KratosMessages } from "components/KratosMessages"
 import { KratosForm } from "components/KratosForm"
 
 export const Settings = () => {
-  const [requestResponse, setRequestResponse] = useState<SettingsRequest>()
+  const [requestResponse, setRequestResponse] = useState<SettingsFlow>()
 
   useEffect(() => {
-    const request = initialiseRequest({ type: "settings" }) as Promise<SettingsRequest>
+    const request = initialiseRequest({ type: "settings" }) as Promise<SettingsFlow>
     request
       .then(request => setRequestResponse(request))
       .catch(() => {})

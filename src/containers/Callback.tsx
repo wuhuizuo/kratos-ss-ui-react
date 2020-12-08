@@ -1,10 +1,11 @@
 import { useEffect } from "react"
-import { PublicApi } from "@oryd/kratos-client"
+import { Configuration, PublicApi } from "@oryd/kratos-client"
 import config from "config/kratos"
 import { setAuthenticated, unsetAuthenticated, unsetAuthenticatedReferer, getAuthenticatedReferer } from "services/auth"
 
-const kratos = new PublicApi(config.kratos.public)
-
+const kratos = new PublicApi(
+  new Configuration({ basePath: config.kratos.public })
+);
 export const Callback = () => {
   useEffect(() => {
     kratos.whoami()

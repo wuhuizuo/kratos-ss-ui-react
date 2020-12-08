@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { LoginRequest } from "@oryd/kratos-client"
+import { LoginFlow } from "@oryd/kratos-client"
 import { initialiseRequest } from "services/kratos"
 import { IconLogo } from "components/IconLogo"
 import { KratosMessages } from "components/KratosMessages"
@@ -9,10 +9,10 @@ import { register } from "services/auth"
 import config from "config/kratos"
 
 export const Login = () => {
-  const [requestResponse, setRequestResponse] = useState<LoginRequest>()
+  const [requestResponse, setRequestResponse] = useState<LoginFlow>()
 
   useEffect(() => {
-    const request = initialiseRequest({ type: "login" }) as Promise<LoginRequest>
+    const request = initialiseRequest({ type: "login" }) as Promise<LoginFlow>
     request
       .then(request => setRequestResponse(request))
       .catch(() => {})

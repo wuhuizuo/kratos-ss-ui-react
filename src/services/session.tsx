@@ -1,29 +1,27 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
-import { PublicApi, Session } from "@oryd/kratos-client"
+import { Configuration, PublicApi, Session } from "@oryd/kratos-client"
 import { isAuthenticated, unsetAuthenticated, login, refresh } from "services/auth"
 import config from "config/kratos"
 
-const kratos = new PublicApi(config.kratos.public)
+const kratos = new PublicApi(
+  new Configuration({ basePath: config.kratos.public })
+);
+const SessionContext = createContext<Session | {[key: string]: any}>({});
 
-const SessionContext = createContext(
-  new Session()
-)
 
 export const useSession = () => useContext(SessionContext)
 
 export const SessionProvider: React.FunctionComponent = ({ children }) => {
-  const [session, setSession] = useState(
-    new Session()
-  )
+  const [session, setSession] = useState<Session | {[key: string]: any}>({});
 
   useEffect(() => {
     isAuthenticated() && kratos.whoami()
-      .then(({ body }) => {
-        const now = new Date()
-        const expiry = body.expiresAt
+      .then(({ data }) => {
+        const now = new Date();
+        const expiry = new Date(data.expires_at);
         // Expired sessions need to be refreshed.
         if (now > expiry) return refresh()
-        else setSession(body)
+        else setSession(data)
       })
       .catch(error => {
         // Request may fail due to an expired token.

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react"
-import { RecoveryRequest } from "@oryd/kratos-client"
+import { RecoveryFlow } from "@oryd/kratos-client"
 import { initialiseRequest } from "services/kratos"
 import { KratosMessages } from "components/KratosMessages"
 import { KratosForm } from "components/KratosForm"
 import { Header } from "components/Header"
 
 export const Recover = () => {
-  const [requestResponse, setRequestResponse] = useState<RecoveryRequest>()
+  const [requestResponse, setRequestResponse] = useState<RecoveryFlow>()
 
   useEffect(() => {
-    const request = initialiseRequest({ type: "recover" }) as Promise<RecoveryRequest>
+    const request = initialiseRequest({ type: "recover" }) as Promise<RecoveryFlow>
     request
       .then(request => setRequestResponse(request))
       .catch(() => {})
