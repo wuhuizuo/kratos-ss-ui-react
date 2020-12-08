@@ -26,6 +26,9 @@ export default {
     },
     registration: {
       path: "/auth/registration"
+    },
+    error: {
+      path: "/error"
     }
   }
 }

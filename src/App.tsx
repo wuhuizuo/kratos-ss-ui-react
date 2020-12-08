@@ -8,6 +8,7 @@ import { Dashboard } from "containers/Dashboard"
 import { SessionProvider } from "services/session"
 import { Settings } from "containers/Settings"
 import { Verify } from "containers/Verify"
+import { Error } from "containers/Error"
 import config from "config/kratos"
 import "./App.css"
 
@@ -24,6 +25,7 @@ function App() {
               <Route path={ config.routes.verification.path } element={ <Verify /> } />
               <Route path={ config.routes.recovery.path } element={ <Recover /> } />
               <Route path={ config.routes.registration.path } element={ <Register /> } />
+              <Route path={ config.routes.error.path } element={ <Error /> } />
             </Routes>
           </SessionProvider>
         </BrowserRouter>

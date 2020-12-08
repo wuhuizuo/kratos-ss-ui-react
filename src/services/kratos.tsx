@@ -52,10 +52,15 @@ export const initialiseRequest = ({
     authRequest
       .then(({ data }) => {
         resolve(data);
-    })
+      })
       .catch((error) => {
         console.debug(error)
         return (window.location.href = endpoint);
       });
   });
+}
+
+export async function getError(errorId: string) {
+  const res = await kratos.getSelfServiceError(errorId);
+  return res.data;
 }
