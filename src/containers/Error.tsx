@@ -27,13 +27,16 @@ export const Error = () => {
   return (
     <div className="content">
       <Header />
-        <h4>Has a Error: { error && error.id || ""}</h4>
+        <h4>Has a Error: { error?.id || ""}</h4>
         <div className="messages">
-          { errors.map(({code, status, reason, message}: KratosError) => 
+          { errors && errors.map(({code, status, reason, message}: KratosError) => 
             <div key={ status } className={ `message ${status}` }>
               <label>code: {code}</label>
+              <br/>
               <label>status: {status}</label>
+              <br/>
               <label>message: {message}</label>
+              <br/>
               <label>reason: {reason}</label>
             </div>) 
           }
