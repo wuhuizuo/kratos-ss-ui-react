@@ -21,25 +21,25 @@ export const Error = () => {
       });
   }, [setError]);
 
-  const errors =   error?.errors as KratosError[];
+  const errors = error?.errors as KratosError[];
   console.error(errors);
 
   return (
     <div className="content">
       <Header />
-        <h4>Has a Error: { error?.id || ""}</h4>
-        <div className="messages">
-          { errors && errors.map(({code, status, reason, message}: KratosError) => 
-            <div key={ status } className={ `message ${status}` }>
-              <label>code: {code}</label>
-              <br/>
-              <label>status: {status}</label>
-              <br/>
-              <label>message: {message}</label>
-              <br/>
-              <label>reason: {reason}</label>
-            </div>) 
-          }
+      <h4>Has a Error: {error?.id || ""}</h4>
+      <div className="messages">
+        {errors && errors.map(({ code, status, reason, message }: KratosError) =>
+          <div key={status} className={`message ${status}`}>
+            <label>code: {code}</label>
+            <br />
+            <label>status: {status}</label>
+            <br />
+            <label>message: {message}</label>
+            <br />
+            <label>reason: {reason}</label>
+          </div>)
+        }
       </div>
     </div>
   );

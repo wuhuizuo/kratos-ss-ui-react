@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-docker-compose run --rm kratos-ss-ui-react yarn install
+docker-compose run --rm kratos-ss-ui-react npm install
 
 # Choose between NGINX or Oathkeeper reverse proxy:
 
